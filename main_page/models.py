@@ -11,4 +11,3 @@ class Meniu(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
     date_created = models.DateTimeField(default=timezone.now)
     thumbnail_image = models.ImageField(upload_to='book_thumbnails/', blank=True, null=True)
-    

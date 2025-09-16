@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Main_page{% endblock %}</title>
+    <link rel="stylesheet" href="main_page/style.css">
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="{% url 'main_page' %}" >Main_page</a>
+            <a href="{% url 'meniu' %}" >Meniu</a>
+            <a href="{% url 'about' %}" >About</a>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'meniu'%}">Add Book</a>
+                <form action="{% url 'logout' %}" method="post" style="display: inline!important;" >
+                    {% csrf_token %}
+                    <button type="submit" style="
+                          background: none!important;
+                          border: none;
+                          padding: 0!important;
+                          /*optional*/
+                          font-family: arial, sans-serif;
+                          /*input has OS specific font-family*/
+                          color: #069;
+                          text-decoration: underline;
+                          cursor: pointer;
+                        ">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" >Login</a>
+                <a href="{% url 'register' %}" >Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

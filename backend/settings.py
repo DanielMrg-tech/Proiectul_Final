@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
-from django.conf.global_settings import MEDIA_URL
+import os
+from django.conf.global_settings import MEDIA_URL, LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'accounts',
+    'main_page',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +121,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-import os
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 MEDIA_URL = '/media/'

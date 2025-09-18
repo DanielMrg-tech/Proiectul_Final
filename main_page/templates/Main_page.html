@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Main_page{% endblock %}</title>
+    <title>{% block title %}Main page{% endblock %}</title>
     <link rel="stylesheet" href="main_page/style.css">
 </head>
 <body>
@@ -11,10 +11,10 @@
         <div>
             <a href="{% url 'main_page' %}" >Main_page</a>
             <a href="{% url 'meniu' %}" >Meniu</a>
-            <a href="{% url 'about' %}" >About</a>
+            <a href="{% url 'about_restaurant' %}" >About</a>
 
             {% if user.is_authenticated %}
-            <a href="{% url 'meniu'%}">Add Book</a>
+            <a href="{% url 'meniu'%}">Add Meniu</a>
                 <form action="{% url 'logout' %}" method="post" style="display: inline!important;" >
                     {% csrf_token %}
                     <button type="submit" style="

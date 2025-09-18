@@ -1,0 +1,14 @@
+{% extends "Main_page.html" %}
+
+{% block title %}Create Meniu{% endblock %}
+
+{% block content %}
+
+  <h1>Create a new Meniu:</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+  </form>
+
+{% endblock %}

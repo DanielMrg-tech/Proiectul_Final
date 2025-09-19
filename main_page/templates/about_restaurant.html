@@ -1,9 +1,22 @@
 {% extends "Main_page.html" %}
 
-{% block title %}About{% endblock %}
+{% block title %}Despre Noi{% endblock %}
 
 {% block content %}
-  <p>Here is our About page!</p>
-  <p>My name is Brown</p>
-  <p>Hometown Wonderland</p>
+<div class="container py-5" style="max-width: 700px;">
+  <h1 class="mb-4 text-center fw-bold text-primary">Despre Restaurantul Nostru</h1>
+
+  <p class="fs-5 text-center text-muted mb-5">Bine ai venit la o experiență culinară de neuitat!</p>
+
+  <div class="bg-light p-4 rounded shadow-sm border">
+    <p class="mb-3"><strong>Numele meu este:</strong> Brown</p>
+    <p class="mb-3"><strong>Orașul natal:</strong> Wonderland</p>
+    <p class="mb-3">
+      Restaurantul nostru este dedicat pasiunii pentru mâncarea autentică,
+      ingredientelor proaspete și atmosferei primitoare. Ne dorim să oferim
+      fiecărui oaspete o experiență memorabilă, fie că savurezi o pizza tradițională,
+      paste delicioase sau deserturi rafinate.
+    </p>
+  </div>
+</div>
 {% endblock %}

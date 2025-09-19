@@ -1,10 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "Main_page.html" %}
 
-</body>
-</html>
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+  <div class="form-container">
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+    </form>
+  </div>
+<style>
+    .form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: #fff8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(230, 150, 50, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Titlu */
+  .form-container h2 {
+    text-align: center;
+    color: #d35400;
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Form (formular) */
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Stil pentru câmpuri input */
+  .form-container form p {
+    margin-bottom: 18px;
+  }
+
+  .form-container form input[type="text"],
+  .form-container form input[type="email"],
+  .form-container form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e67e22;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  /* Schimbă border-ul când câmpul e focus */
+  .form-container form input[type="text"]:focus,
+  .form-container form input[type="email"]:focus,
+  .form-container form input[type="password"]:focus {
+    border-color: #d35400;
+    outline: none;
+    box-shadow: 0 0 8px rgba(211, 84, 0, 0.4);
+  }
+
+  /* Buton submit */
+  .form-container form button {
+    margin-top: 20px;
+    background-color: #d35400;
+    color: white;
+    padding: 14px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Buton hover */
+  .form-container form button:hover {
+    background-color: #e67e22;
+  }
+
+  /* Mesaje de eroare */
+  .form-container .errorlist {
+    color: #c0392b;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .form-container {
+      margin: 20px 10px;
+      padding: 25px 20px;
+    }
+  }
+</style>
+{% endblock %}

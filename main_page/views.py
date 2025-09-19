@@ -34,7 +34,7 @@ def create_meniu(request):
     return HttpResponse("Boon Apetit")
 
 def about_restaurant(request):
-    return render(request, 'about_restaurant')
+    return render(request, 'about_restaurant.html')
 
 class MainViewSet(viewsets.ModelViewSet):
     queryset = Meniu.objects.all()
@@ -79,7 +79,7 @@ def meniu_view(request: HttpRequest):
             meniu_instance = form_with_data.save(commit=False)
             meniu_instance.created_by = request.user
             meniu_instance.save()
-            return redirect('menus')
+            return redirect('meniu.html')
         else:
             return HttpResponse(form_with_data.errors)
 
@@ -91,7 +91,7 @@ def update_meniu(request, pk):
         form = MeniuForm(request.POST, request.FILES, instance=meniu)
         if form.is_valid():
             form.save()
-            return redirect("Main_page")
+            return redirect("Main_page.html")
     else:
         form = MeniuForm(instance=meniu)
         return render(request, 'meniu_form.html', {'form': form, 'meniu': meniu})

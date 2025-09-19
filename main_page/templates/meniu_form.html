@@ -1,14 +1,15 @@
-{% extends "Main_page" %}
+{% extends "Main_page.html" %}
 
 {% block title %}Update Meniu{% endblock %}
 
 {% block content %}
+<div class="container my-5" style="max-width: 600px;">
+  <h1 class="mb-4 text-center text-primary fw-bold">Modifică preparatul din meniu</h1>
 
-  <h1>Update Meniu</h1>
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm border">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Update</button>
+    <button type="submit" class="btn btn-success w-100 mt-3">Actualizează preparatul</button>
   </form>
-
+</div>
 {% endblock %}

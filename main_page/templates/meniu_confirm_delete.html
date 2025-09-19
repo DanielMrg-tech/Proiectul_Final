@@ -3,9 +3,17 @@
 {% block title %}Confirm Delete{% endblock %}
 
 {% block content %}
-  <p>Are you sure you want to delete this meniu?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes!</button>
-  </form>
+<div class="container my-5" style="max-width: 480px;">
+  <div class="bg-light p-4 rounded shadow-sm border text-center">
+    <h2 class="mb-4 text-danger fw-bold">Ștergere preparat</h2>
+    <p class="mb-4 fs-5">Ești sigur că vrei să ștergi acest preparat din meniu?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger w-100 fw-semibold">Da, șterge!</button>
+    </form>
+
+    <a href="{% url 'menus_list' %}" class="btn btn-secondary mt-3 w-100">Anulează</a>
+  </div>
+</div>
 {% endblock %}

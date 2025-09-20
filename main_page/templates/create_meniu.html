@@ -1,29 +1,51 @@
-{% extends "Main_page.html" %}
+{% extends "main_page.html" %}
 
-{% block title %}Create Meniu{% endblock %}
+{% block title %} Create Meniu {% endblock %}
 
 {% block content %}
-<div class="container my-5" style="max-width: 600px;">
-  <h1 class="mb-4 text-center text-primary fw-bold">Adaugă un preparat nou în meniu</h1>
-
-  <form method="post" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm border">
-    {% csrf_token %}
-
-    {# Afișăm fiecare câmp cu stil Bootstrap #}
-    {% for field in form %}
-      <div class="mb-3">
-        <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
-        {{ field|add_class:"form-control" }}
-        {% if field.help_text %}
-          <div class="form-text">{{ field.help_text }}</div>
-        {% endif %}
-        {% for error in field.errors %}
-          <div class="text-danger small">{{ error }}</div>
-        {% endfor %}
-      </div>
-    {% endfor %}
-
-    <button type="submit" class="btn btn-primary w-100">Creează preparatul</button>
-  </form>
-</div>
+    <h1 style="text-align: center; font-family: 'Georgia', serif; color: #4B2C2B; margin-top: 30px; font-size: 2.5em; letter-spacing: 2px;">Create a New Meniu</h1>
+    <form method="post" enctype="multipart/form-data" style="max-width: 700px; margin: 40px auto; padding: 30px; border-radius: 15px; background: linear-gradient(135deg, #fff8f0, #ffe0b2); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border: 1px solid #e0c097;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" style="background-color: #d2691e; color: #fff; padding: 15px 30px; border: none; border-radius: 25px; font-size: 1.2em; cursor: pointer; transition: background-color 0.3s;">
+                Submit
+            </button>
+        </div>
+    </form>
+    <style>
+        /* Adăugări suplimentare pentru un aspect mai plăcut */
+        form p {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #a0522d;
+        }
+        /* Stil pentru input-uri dacă le-ai avea în formular */
+        input[type="text"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 2px solid #ffe0b2;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="file"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #d2691e;
+            box-shadow: 0 0 10px rgba(210, 105, 30, 0.3);
+            outline: none;
+        }
+    </style>
 {% endblock %}

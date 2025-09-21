@@ -14,8 +14,9 @@ from django.shortcuts import get_object_or_404
 
 
 def main_page(request):
+
     meniu = list(Meniu.objects.all())
-    meniu.sort(key = (lambda x: x.date_created), reverse=True)
+    meniu.sort(key = (lambda x: x.date_created))
 
     context = {
         'username': 'Daniel',
@@ -58,7 +59,7 @@ def meniu_view_simple(request: HttpRequest):
         context = {
             'menus': menus_list
         }
-        return render(request, 'meniu.html', context)
+        return render(request, 'main_page/meniu.html', context)
     elif request.method == "POST":
         data = json.loads(request.body)
         meniu_title = data["title"]
@@ -79,7 +80,7 @@ def meniu_view(request: HttpRequest):
             meniu_instance = form_with_data.save(commit=False)
             meniu_instance.created_by = request.user
             meniu_instance.save()
-            return redirect('meniu.html')
+            return redirect('meniu_by_user', user_id=request.user.id)
         else:
             return HttpResponse(form_with_data.errors)
 
@@ -91,10 +92,11 @@ def update_meniu(request, pk):
         form = MeniuForm(request.POST, request.FILES, instance=meniu)
         if form.is_valid():
             form.save()
-            return redirect("Main_page.html")
+            return redirect('meniu_by_user', user_id=request.user.id)
     else:
         form = MeniuForm(instance=meniu)
-        return render(request, 'meniu_form.html', {'form': form, 'meniu': meniu})
+
+    return render(request, 'meniu_form.html', {'form': form, 'meniu': meniu})
 
 
 @login_required()
@@ -102,6 +104,6 @@ def delete_meniu(request, pk):
     meniu = get_object_or_404(Meniu, pk=pk, created_by=request.user)
     if request.method == "POST":
         meniu.delete()
-        return redirect("Main_page")
+        return redirect('meniu_by_user', user_id=request.user.id)
     else:
         return render(request, "meniu_confirm_delete.html", {'meniu': meniu})

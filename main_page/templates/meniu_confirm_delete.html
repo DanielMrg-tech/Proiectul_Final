@@ -13,7 +13,7 @@
       <button type="submit" class="btn btn-danger w-100 fw-semibold">Da, șterge!</button>
     </form>
 
-    <a href="{% url 'menus_list' %}" class="btn btn-secondary mt-3 w-100">Anulează</a>
+    <a href="{% url 'meniu_by_user' user_id=meniu.created_by.id %}" class="btn btn-secondary mt-3 w-100">Anulează</a>
   </div>
 </div>
 {% endblock %}

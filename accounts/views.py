@@ -23,15 +23,17 @@ def register_view(request):
     else:
         return HTTPResponse(form.errors)
 
-def login_view(request):
-    if request.method == "GET":
-        form = AuthenticationForm()
-        return render(request, 'login.html', {'form': form})
 
-    form = AuthenticationForm(data=request.POST)
-    if form.is_valid():
-        user = form.get_user()
-        login(request, user)
-        return redirect('/')
+def login_view(request):
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("main_page")
+        else:
+            # renderizează pagina cu erorile, nu le returna direct!
+            return render(request, "login.html", {"form": form})
     else:
-        return HTTPResponse(form.errors)
+        form = AuthenticationForm()
+        return render(request, "login.html", {"form": form})

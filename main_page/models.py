@@ -10,7 +10,7 @@ class Meniu(models.Model):
     meniu_number = models.IntegerField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meniu')
     date_created = models.DateTimeField(default=timezone.now)
-    thumbnail_image = models.ImageField(upload_to='book_thumbnails/', blank=True, null=True)
+    thumbnail_image = models.ImageField(upload_to='meniu_thumbnails/', blank=True, null=True)
 
 
     def __str__(self):

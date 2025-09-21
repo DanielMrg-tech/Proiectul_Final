@@ -1,25 +1,68 @@
-{% extends "Main_page.html" %}
+{% extends "base.html" %}
 
-{% block title %}Meniul nostru{% endblock %}
+{% block title %}My meniu Home{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="text-center mb-4">🍽️ Meniul Restaurantului 🍷</h2>
+<style>
+  .books-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
 
-    <div class="row">
+  .book-card {
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding-bottom: 15px;
+  }
+  .book-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .book-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .book-card h2 {
+    font-size: 1.1em;
+    margin: 5px 0;
+  }
+
+  .book-card p {
+    margin: 2px 0;
+    color: #555;
+    font-size: 0.9em;
+  }
+</style>
+  <p>Hello, {{ user.username }}, from our html page!</p>
+
+      <div class="menus-container" >
         {% for meniu in menus %}
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{ meniu.nume }}</h5>
-                    <p class="card-text">{{ meniu.descriere }}</p>
-                    <p class="mt-auto fw-bold text-end text-primary">{{ meniu.pret }} RON</p>
-                </div>
-            </div>
-        </div>
-        {% empty %}
-        <p class="text-center text-muted">Nu există elemente în meniu momentan.</p>
+          <div class="meniu-card">
+              {% if meniu.thumbnail_image %}
+                  <img src="{{ meniu.thumbnail_image.url }}" alt="Thumbnail for {{ meniu.title }}" width="250" />
+              {% endif %}
+              <h2>{{ meniu.title }}</h2>
+              <p>by {{ meniu.author }}</p>
+              <p>{{ meniu.meniu_number }}</p>
+              <p>added by: <a href="{% url 'meniu_by_user' user_id=meniu.created_by.id  %}" >{{ meniu.created_by }}</a></p>
+
+              <a href="{% url 'update_meniu' pk=meniu.pk %}" style="text-decoration: none;" >✍️</a>
+              <a href="{% url 'delete_meniu' pk=meniu.pk %}" style="text-decoration: none;" >🗑️</a>
+          </div>
         {% endfor %}
-    </div>
-</div>
+      </div>
+
+  <p>Today's time is: {{ current_time }}</p>
+
 {% endblock %}

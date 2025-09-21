@@ -14,7 +14,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
 
     path('meniu/', views.meniu_view, name='meniu'),
-    path('meniu/<int:pk>/delete/', views.delete_meniu, name='meniu_delete'),
+    path('meniu/<int:pk>/delete/', views.delete_meniu, name='delete_meniu'),
     path('meniu/<int:pk>/edit/', views.update_meniu, name='update_meniu'),
     path('users/<int:user_id>/meniu/', views.meniu_by_user, name='meniu_by_user')
 ]

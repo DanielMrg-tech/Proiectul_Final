@@ -10,19 +10,22 @@ from rest_framework import viewsets
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import AnonymousUser
+
 
 
 
 def main_page(request):
-
-    meniu = list(Meniu.objects.all())
-    meniu.sort(key = (lambda x: x.date_created))
+    if isinstance(request.user, AnonymousUser):
+        meniu = list(Meniu.objects.all().order_by('-date_created'))
+    else:
+        meniu = list(Meniu.objects.filter(created_by = request.user).order_by('-date_created'))
 
     context = {
-        'username': 'Daniel',
-        'logged_in': True,
+        'user': request.user,
+        'menus': meniu,
+        'logged_in': request.user.is_authenticated,
         'current_time': datetime.now(),
-        'meniu': meniu
     }
     return render(request, 'Main_page.html', context)
 
@@ -92,7 +95,7 @@ def update_meniu(request, pk):
         form = MeniuForm(request.POST, request.FILES, instance=meniu)
         if form.is_valid():
             form.save()
-            return redirect('meniu_by_user', user_id=request.user.id)
+            return redirect('main_page')
     else:
         form = MeniuForm(instance=meniu)
 
@@ -104,6 +107,6 @@ def delete_meniu(request, pk):
     meniu = get_object_or_404(Meniu, pk=pk, created_by=request.user)
     if request.method == "POST":
         meniu.delete()
-        return redirect('meniu_by_user', user_id=request.user.id)
+        return redirect('main_page')
     else:
         return render(request, "meniu_confirm_delete.html", {'meniu': meniu})

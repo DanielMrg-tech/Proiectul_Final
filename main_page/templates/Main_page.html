@@ -56,9 +56,10 @@
               <p>by {{ meniu.client }}</p>
               <p>{{ meniu.meniu_number }}</p>
               <p>added by: <a href="{% url 'meniu_by_user' user_id=meniu.created_by.id  %}" >{{ meniu.created_by }}</a></p>
-
-              <a href="{% url 'meniu_update' pk=meniu.pk %}" style="text-decoration: none;" >✍️</a>
-              <a href="{% url 'meniu_delete' pk=meniu.pk %}" style="text-decoration: none;" >🗑️</a>
+              {% if logged_in and meniu.created_by == user %}
+                  <a href="{% url 'update_meniu' pk=meniu.pk %}" style="text-decoration: none;" >✍️</a>
+                  <a href="{% url 'delete_meniu' pk=meniu.pk %}" style="text-decoration: none;" >🗑️</a>
+              {% endif %}
           </div>
         {% endfor %}
       </div>

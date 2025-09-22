@@ -16,23 +16,37 @@ from django.contrib.auth.models import AnonymousUser
 
 
 def main_page(request):
+    sort = request.GET.get('sort', 'date_desc')
+
     if isinstance(request.user, AnonymousUser):
-        meniu = list(Meniu.objects.all().order_by('-date_created'))
+        queryset = Meniu.objects.all()
     else:
-        meniu = list(Meniu.objects.filter(created_by = request.user).order_by('-date_created'))
+        queryset = Meniu.objects.filter(created_by = request.user)
+
+    if sort == 'date_asc':
+        queryset = queryset.order_by('date_created')
+    elif sort == 'date_desc':
+        queryset = queryset.order_by('-date_created')
+    elif sort == 'title_asc':
+        queryset = queryset.order_by('title')
+    elif sort == 'title_desc':
+        queryset = queryset.order_by('-title')
+
+    meniu = list(queryset)
 
     context = {
         'user': request.user,
         'menus': meniu,
         'logged_in': request.user.is_authenticated,
         'current_time': datetime.now(),
+        'sort': sort,
     }
     return render(request, 'Main_page.html', context)
 
 def create_meniu(request):
     meniu1 = Meniu()
     meniu1.title = "Breakfast"
-    meniu1.client = "Daniel"
+    meniu1.produs = "rosii"
     meniu1.meniu_number = 2
     meniu1.save()
     return HttpResponse("Boon Apetit")

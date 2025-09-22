@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class Meniu(models.Model):
     title = models.CharField(max_length=255)
-    client = models.CharField(max_length=255)
+    produs = models.CharField(max_length=255)
     meniu_number = models.IntegerField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meniu')
     date_created = models.DateTimeField(default=timezone.now)
@@ -14,4 +14,4 @@ class Meniu(models.Model):
 
 
     def __str__(self):
-        return "{}, by {}, number {}".format(self.title, self.client, self.meniu_number)
+        return "{}, by {}, number {}".format(self.title, self.produs, self.meniu_number)

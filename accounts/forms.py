@@ -2,11 +2,11 @@ from django import forms
 from django.contrib.auth.models import User
 
 from django.contrib.auth.forms import UserCreationForm
-
+# Formular pentru înregistrare utilizator, moștenește UserCreationForm
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True)  # Adaugă câmp obligatoriu pentru email
 
-    # aici trebuie sa legam importul User de acest registration ca servarul sa stie de unde e si asta facem prin clasa meta
+    # Legăm formularul de modelul User
     class Meta:
-        model = User
-        fields = ['username', 'email']
+        model = User  # Formularul va salva date în modelul User
+        fields = ['username', 'email']  # Câmpurile disponibile în formular

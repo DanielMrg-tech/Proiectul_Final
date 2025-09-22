@@ -3,20 +3,98 @@
 {% block title %}Despre Noi{% endblock %}
 
 {% block content %}
-<div class="container py-5" style="max-width: 700px;">
-  <h1 class="mb-4 text-center fw-bold text-primary">Despre Restaurantul Nostru</h1>
+<header class="about-header">
+    <h1>Ristorante Bella Vita</h1>
+    <p>O bucățică de Italia chiar în inima orașului tău</p>
+</header>
 
-  <p class="fs-5 text-center text-muted mb-5">Bine ai venit la o experiență culinară de neuitat!</p>
+<section class="about-section">
+    <h2>Despre Noi</h2>
+    <p>Fondat în anul <strong>1998</strong>, <strong>Ristorante Bella Vita</strong> este un restaurant italian cu tradiție, renumit pentru atmosfera sa caldă și primitoare. Îmbinăm gusturile autentice italiene cu un design elegant, inspirat din micile trattorii italiene.</p>
 
-  <div class="bg-light p-4 rounded shadow-sm border">
-    <p class="mb-3"><strong>Numele meu este:</strong> Brown</p>
-    <p class="mb-3"><strong>Orașul natal:</strong> Wonderland</p>
-    <p class="mb-3">
-      Restaurantul nostru este dedicat pasiunii pentru mâncarea autentică,
-      ingredientelor proaspete și atmosferei primitoare. Ne dorim să oferim
-      fiecărui oaspete o experiență memorabilă, fie că savurezi o pizza tradițională,
-      paste delicioase sau deserturi rafinate.
-    </p>
-  </div>
-</div>
+    <h2>Atmosferă și Decor</h2>
+    <p>Restaurantul nostru te întâmpină cu lumini calde, muzică italiană în surdină și mese acoperite cu fețe de masă în carouri roșii și albe. Pereții sunt decorați cu fotografii vechi ale Italiei și obiecte tradiționale, creând o experiență autentică pentru toți oaspeții noștri.</p>
+
+    <h2>Meniu</h2>
+    <p>La <strong>Bella Vita</strong>, găsești o selecție variată de preparate italiene: paste făcute în casă, pizza cu blat subțire, risotto cremos și deserturi delicioase precum tiramisu sau panna cotta. Folosim ingrediente proaspete, importate direct din Italia ori produse local de cea mai bună calitate.</p>
+
+    <h2>Servicii și Experiențe</h2>
+    <p>Pe lângă mesele tradiționale, oferim și experiențe speciale precum seri de vinuri italiene, cursuri de gătit pentru pasionați și evenimente private într-un cadru intim și elegant. Personalul nostru prietenos se asigură că fiecare vizită devine memorabilă.</p>
+
+    <h2>Formular de Contact</h2>
+    <form action="#" method="post" class="contact-form">
+        <label for="name">Nume:</label>
+        <input type="text" id="name" name="name" placeholder="Numele tău">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="exemplu@email.com">
+
+        <label for="phone">Număr de telefon:</label>
+        <input type="tel" id="phone" name="phone" placeholder="0123 456 789">
+
+        <label for="message">Mesaj:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Scrie mesajul tău aici..."></textarea>
+
+        <label for="location">Locație:</label>
+        <input type="text" id="location" name="location" value="Strada Italia 12, București" readonly>
+
+        <button type="submit">Trimite</button>
+    </form>
+</section>
+
+<style>
+.about-header {
+    background-color: rgba(192, 57, 43, 0.9);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.about-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 12px;
+    color: #fff;
+}
+
+.about-section h2 {
+    color: #f39c12;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.contact-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    color: #333;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.contact-form button {
+    background-color: #c0392b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #e74c3c;
+}
+</style>
 {% endblock %}
